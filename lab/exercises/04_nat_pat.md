@@ -59,16 +59,12 @@ docker logs --tail 3 lab_internet
 
 **Question A.1.** Quelle adresse le serveur web voit-il ? Est-ce l'adresse du client ? De quelle machine s'agit-il ?
 
-> 💬 **Votre réponse :**
->
-> _Remplacez ce texte par votre réponse._
+> 💬 Il voit l'adresse ip 172.20.0.254, non il ne s'agit pas de l'adresse client mais de l'adresse Wan ( publique) du routeur.
 
 **Question A.2.** Les adresses `172.20.x.x`, `192.168.x.x` et `10.x.x.x` sont des **adresses privées**
 (voir la fiche). Pourquoi un vrai serveur sur Internet ne pourrait-il pas répondre à une adresse privée ?
 
-> 💬 **Votre réponse :**
->
-> _Remplacez ce texte par votre réponse._
+> 💬 Car les adresses IP privées sont destinées au réseau local, des millions d'adresses IP privées sont similaires entre réseau, le serveur web ne sauraient donc pas de laquelle il s'agit
 
 ---
 
@@ -109,16 +105,14 @@ tcp 6 119 TIME_WAIT src=172.20.1.50 dst=172.20.0.10 sport=52942 dport=80 src=172
 
 **Question B.1.** Recopiez **une** ligne de votre table et complétez :
 
-| Sens   | IP source | IP destination | Port source | Port destination |
-| ------ | --------- | -------------- | ----------- | ---------------- |
-| Aller  | …         | …              | …           | …                |
-| Retour | …         | …              | …           | …                |
+| Sens   | IP source   | IP destination | Port source | Port destination |
+| ------ | ---------   | -------------- | ----------- | ---------------- |
+| Aller  | 172.20.1.124| 172.20.0.10    | 52942       | …    80            |
+| Retour | 172.20.0.10 | 172.20.0.254   | 80          | … 52942               |
 
 Dans le sens **retour**, à quelle adresse le serveur répond-il ? Qui fait la traduction vers le client ?
 
-> 💬 **Votre réponse :**
->
-> _Remplacez ce texte par votre réponse._
+> 💬 **Le serveur répond à l'adresse publique du routeur 172.20.0.254 qui se charge également de la traduction.
 
 **Question B.2.** Combien de lignes voyez-vous pour vos 3 requêtes ? Les **ports source** sont-ils
 identiques ? Pourquoi est-ce indispensable quand plusieurs PC partagent la même adresse publique ?
